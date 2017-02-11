@@ -12,9 +12,7 @@ Usage
 Gerrit projects generator for Jeepyb tools.
 
 positional arguments:
-  +----------------------------------------------------+
-  | PROJECT_TAG    project tag(s) or file(s) with tags |
-  +----------------------------------------------------+
+  :kbd:`PROJECT_TAG`    project tag(s) or file(s) with tags
 
 optional arguments:
   -h, --help       show this help message and exit
@@ -23,3 +21,28 @@ optional arguments:
                    Defaults to the current directory
   -n FILE_NAME, --name FILE_NAME
                    name of file to store Gerrit projects. Defaults to ``projects.yaml``
+
+Example
+```````
+``owner_list.txt`` file content:
+::
+
+   person1
+   person2
+
+``projects_list.txt`` file content:
+::
+
+   project1
+   project2
+
+``$ projects-generator.py 2017 owner_list.txt vhdl projects_list.txt``
+
+Command execution result (``projects.yaml``):
+
+.. code:: yaml
+
+    - project: 2017/person1/vhdl/project1
+    - project: 2017/person1/vhdl/project2
+    - project: 2017/person2/vhdl/project1
+    - project: 2017/person2/vhdl/project2

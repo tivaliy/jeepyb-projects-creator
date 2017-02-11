@@ -56,7 +56,8 @@ def retrieve_tags(arg):
     """
     try:
         with open(arg, 'r') as fd:
-            tags = [x.strip('\n') for x in fd]
+            # remove empty lines from file if exists
+            tags = filter(None, (line.rstrip() for line in fd))
     except (OSError, IOError):
         tags = [arg]
     return tags
