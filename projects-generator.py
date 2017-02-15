@@ -44,20 +44,23 @@ import sys
 import yaml
 
 
-def retrieve_tags(arg):
+def retrieve_tags(arg, comment_symbol='#'):
     """Retrieve tag(s) from argument. If argument is file then read all tags
     from it, otherwise convert argument to tag. Tags in files must be putted
     on a separate lines
 
     :param arg: single tag name or file name that contains tags
     :type arg: str
+    :param comment_symbol: skip lines that start with specified symbol
+    :type comment_symbol: str
     :return: data as a list of tag(s)
     :rtype: list
     """
     try:
         with open(arg, 'r') as fd:
-            # remove empty lines from file if exists
-            tags = filter(None, (line.rstrip() for line in fd))
+            # remove empty lines from file
+            tags = list(filter(None, (line.rstrip() for line in fd
+                                      if not line.startswith(comment_symbol))))
     except (OSError, IOError):
         tags = [arg]
     return tags
