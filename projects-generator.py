@@ -97,6 +97,10 @@ def main():
                         default='projects.yaml',
                         help="name of file to store Gerrit projects. "
                              "Defaults to 'projects.yaml'")
+    parser.add_argument('--acl-config',
+                        metavar='ACL_CONFIG_PATH',
+                        required=True,
+                        help="path to acl config file")
     args = parser.parse_args()
 
     retrieved_tags = []
@@ -110,7 +114,8 @@ def main():
     projects_names.sort()
     projects = []
     for project_name in projects_names:
-        project_item = {'project': project_name}
+        project_item = {'project': project_name,
+                        'acl-config': args.acl_config}
         projects.append(project_item)
     create_yaml(projects, args.directory, args.name)
     sys.stdout.write("File '{}' successfully generated in '{}'"

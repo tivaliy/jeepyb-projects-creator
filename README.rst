@@ -7,7 +7,7 @@ Tool for generating ``projects.yaml`` file for `Jeepyb <https://github.com/opens
 Usage
 -----
 
-**projects-generator.py [-h] [-d DIRECTORY] [-n FILE_NAME] PROJECT_TAG [PROJECT_TAG ...]**
+**projects-generator.py [-h] [-d DIRECTORY] [-n FILE_NAME] --acl-config ACL_CONFIG_PATH PROJECT_TAG [PROJECT_TAG ...]**
 
 Gerrit projects generator for Jeepyb tools.
 
@@ -21,6 +21,8 @@ optional arguments:
                    Defaults to the current directory
   -n FILE_NAME, --name FILE_NAME
                    name of file to store Gerrit projects. Defaults to ``projects.yaml``
+  --acl-config ACL_CONFIG_PATH
+                   path to acl config file
 
 Example
 ```````
@@ -36,13 +38,17 @@ Example
    project1
    project2
 
-``$ projects-generator.py 2017 owner_list.txt vhdl projects_list.txt``
+``$ projects-generator.py 2017 owner_list.txt vhdl projects_list.txt --acl-config acls/vhdl/vhdl.config``
 
 Command execution result (``projects.yaml``):
 
 .. code:: yaml
 
     - project: 2017/person1/vhdl/project1
+      acl-config: acls/vhdl/vhdl.config
     - project: 2017/person1/vhdl/project2
+      acl-config: acls/vhdl/vhdl.config
     - project: 2017/person2/vhdl/project1
+      acl-config: acls/vhdl/vhdl.config
     - project: 2017/person2/vhdl/project2
+      acl-config: acls/vhdl/vhdl.config
